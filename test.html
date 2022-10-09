@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>Chat Box</title>
+  <title>Live Chat</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
   <link rel="stylesheet" href="style.css">
@@ -15,7 +15,14 @@
   </video>
     <div id="live-chat">
 
-        <header class="clearfix">      
+        <header class="clearfix">
+    
+          <a class="chat-close">X</a>
+    
+          <h4>Tam Nguyen</h4>
+    
+          <span class="chat-message-counter">3</span>
+          
         </header>
     
         <div class="chat">
@@ -26,6 +33,8 @@
     
               <div class="chat-message-content clearfix">
     
+                <h5>Tam Nguyen</h5>
+    
                 <p>Start Conversation Below!</p>
     
               </div>
@@ -34,9 +43,11 @@
     
             <hr>
 
+    <h1>Todo</h1>
+
     <form id="sign">
       <input id="alias" placeholder="username">
-      <input id="pass" type="password" placeholder="password">
+      <input id="pass" type="password" placeholder="passphrase">
       <input id="in" type="submit" value="sign in">
       <input id="up" type="button" value="sign up">
     </form>
@@ -45,12 +56,13 @@
 
     <form id="said">
         <input id="say">
-        <input type="submit" value="send" id="send">
+        <input id="speak" type="submit" value="speak">
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/gun/examples/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+    <!-- script src="https://cdn.jsdelivr.net/npm/gun/lib/webrtc.js"></script -->
     <script>
     var gun = Gun(['http://localhost:8765/gun', 'https://gun-manhattan.herokuapp.com/gun']);
     var user = gun.user();
