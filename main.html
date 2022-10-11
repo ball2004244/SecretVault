@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="UTF-8">
@@ -9,67 +10,38 @@
   <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
-  <video autoplay playsinline controls>
+  <video playsinline controls>
     <source src="chill.mp4" type="video/mp4">
   </video>
-    <div id="live-chat">
 
-        <header class="clearfix">      
-        </header>
-    
-        <div class="chat">
-    
-          <div class="chat-history">
-    
-            <hr>
-
-    <form id="sign">
-      <input id="alias" placeholder="username" autocomplete="off">
-      <input id="pass" type="password" placeholder="password" autocomplete="off">
-      <input id="in" type="submit" value="sign in">
-      <input id="up" type="button" value="sign up">
-    </form>
-
+  <div id="live-chat">
+    <header class="clearfix">
+    </header>
+    <!-- Chat Start Here -->
     <ul></ul>
+    <div class="chat">
+      <form id="sign_in_form">
+        <input id="username" placeholder="username" autocomplete="off">
+        <input id="password" type="password" placeholder="password" autocomplete="off">
+        <input id="sign_in" type="submit" value="LOGIN">
+        <input id="sign_up" type="submit" value="SIGN UP">
+      </form>
 
-    <form id="said">
-        <input id="say" autocomplete="off">
+      <hr>
+      <form id="text_send_form">
+        <input id="text_send" autocomplete="off">
         <input type="submit" value="send" id="send">
-    </form>
+      </form>
+    </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/gun/examples/jquery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
-    <script>
-    var gun = Gun(['http://localhost:8765/gun', 'https://gun-manhattan.herokuapp.com/gun']);
-    var user = gun.user();
+  <script src="jquery-3.6.1.min.js"></script>
+  <script src="jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+  <script src="mechanism.js"></script>
+</body>
 
-    $('#up').on('click', function(e){
-      user.create($('#alias').val(), $('#pass').val());
-    });
-
-    $('#sign').on('submit', function(e){
-      e.preventDefault();
-      user.auth($('#alias').val(), $('#pass').val());
-    });
-
-    $('#said').on('submit', function(e){
-      e.preventDefault();
-      if(!user.is){ return }
-      user.get('said').set($('#say').val());
-      $('#say').val("");
-    });
-
-    function UI(say, id){
-      var li = $('#' + id).get(0) || $('<li>').attr('id', id).appendTo('ul');
-      $(li).text(say);
-    };
-
-    gun.on('auth', function(){
-      $('#sign').hide();
-      user.get('said').map().once(UI);
-    });
-    </script>
-  </body>
 </html>
